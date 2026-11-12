@@ -1,0 +1,25 @@
+# Modelos y archivos de Revit
+*.rvt
+*.rfa
+*.rte
+*.rft
+*.slog
+
+# Generado por generar_modulos.py (se guarda en bimwright, no en git)
+bimwright-mcp/modulos/
+
+# Configuración local de Claude Code
+.claude/settings.local.json
+.claude/launch.json
+
+# Python y compilación
+__pycache__/
+*.pyc
+bin/
+obj/
+
+# Salidas y temporales
+out/
+exports/
+Thumbs.db
+desktop.ini

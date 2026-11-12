@@ -1,0 +1,15 @@
+{
+ "_nota": "Ejemplo de estandar para estandares-graficos. Reemplazar por el de la oficina: prefijo, nombres, grosores, colores y patrones.",
+ "version": "1",
+ "filtro": "^MI-",
+ "regla_nombre": "^MI-LN-(01|02|03)-(CON|SEG)-(NE|GR|RO)$",
+ "patrones": [
+  { "nombre": "MI-SEG", "segmentos": [ { "tipo": "raya", "mm": 3.0 }, { "tipo": "espacio", "mm": 2.0 } ] },
+  { "nombre": "MI-SEG-PTO", "segmentos": [ { "tipo": "raya", "mm": 5.0 }, { "tipo": "espacio", "mm": 2.0 }, { "tipo": "punto", "mm": 0.0 }, { "tipo": "espacio", "mm": 2.0 } ] }
+ ],
+ "estilos": [
+  { "nombre": "MI-LN-01-CON-NE", "grosor": 1, "rgb": [0, 0, 0], "patron": "SOLIDO" },
+  { "nombre": "MI-LN-02-CON-GR", "grosor": 2, "rgb": [128, 128, 128], "patron": "SOLIDO" },
+  { "nombre": "MI-LN-03-SEG-RO", "grosor": 3, "rgb": [255, 0, 0], "patron": "MI-SEG" }
+ ]
+}
