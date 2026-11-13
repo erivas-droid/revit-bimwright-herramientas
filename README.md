@@ -10,14 +10,14 @@ skill de Claude Code con las reglas de uso.
 
 bimwright no se incluye: se instala desde su repositorio oficial (licencia Apache-2.0).
 
-> **Estado:** v0.1.0, primera versión para probar. Úsalo en modelos de ejemplo antes de
+> **Estado:** v0.1.1, versión para probar. Úsalo en modelos de ejemplo antes de
 > tocar un proyecto real (ver [Reglas de seguridad](#reglas-de-seguridad)).
 
 ## Requisitos
 
 - Windows 10 u 11.
-- **Revit 2024**. Las herramientas se probaron en Revit 2024.3. bimwright admite Revit 2022
-  a 2027, pero las herramientas propias no se han probado en otras versiones.
+- **Revit 2024 o 2025**. Las herramientas se probaron en Revit 2024.3 y 2025.5. bimwright
+  admite Revit 2022 a 2027, pero las herramientas propias no se han probado en otras versiones.
 - **Claude Code**, en la app de escritorio de Claude o en la terminal.
 - **bimwright v1.2.2** (se instala en el paso 2).
 - [git](https://git-scm.com/download/win) y [Python 3](https://www.python.org/downloads/).
@@ -66,7 +66,13 @@ aislada de AppData que Revit no ve.
    - el add-in en `%APPDATA%\Autodesk\Revit\Addins\<año>\` para cada Revit instalado;
    - el MCP `rvt-mcp` registrado en Claude Code.
 
-bimwright no está firmado. En el PC donde se probó, Smart App Control estaba activo y no lo
+Si se le pide a Claude que lo instale, tiene que ejecutar `install.ps1` fuera del paquete
+MSIX, por ejemplo con una tarea programada de un solo uso (`Register-ScheduledTask` y
+`Start-ScheduledTask`, guardando la salida en un archivo y borrando la tarea al terminar). Para
+comprobarlo: no debe aparecer una carpeta `Bimwright` dentro de
+`%LOCALAPPDATA%\Packages\Claude_*\LocalCache`.
+
+bimwright no está firmado. En los PC donde se probó, Smart App Control estaba activo y no lo
 bloqueó. Si Windows lo bloquea, avisar antes de cambiar cualquier ajuste de seguridad.
 
 ### 3. Elegir los toolsets
@@ -91,7 +97,7 @@ $c | Add-Member -NotePropertyName enableSendCode -NotePropertyValue $true -Force
 
 1. Reiniciar Claude Code para que cargue `rvt-mcp`.
 2. Abrir Revit con un modelo de ejemplo, por ejemplo
-   `C:\Program Files\Autodesk\Revit 2024\Samples\Snowdon Towers Sample Architectural.rvt`.
+   `C:\Program Files\Autodesk\Revit <año>\Samples\Snowdon Towers Sample Architectural.rvt`.
 3. Abrir Claude Code **en la carpeta del repositorio**. Así se carga sola la skill
    `revit-bimwright` (`.claude/skills/`), que explica a Claude cómo usar todo esto.
 4. Pedirle: "revisa la conexión con Revit". Debería llamar a `revit_health` y responder con
