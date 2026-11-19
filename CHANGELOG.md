@@ -5,6 +5,18 @@ según [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Agregado
+
+- 8 nuevas herramientas propias para `send_code` de bimwright:
+  - `cubicar-por-areas`: cubicación espacial de elementos modelados por `Area Plan` o `Rooms` (solo lectura, con soporte para otro documento abierto y exportación CSV).
+  - `sincronizar-recintos-desde-areas`: auditoría y traspaso de parámetros desde `Areas` hacia `Rooms` por cruce geométrico, con soporte opcional para parámetros que varían por instancia de grupo (`VariesAcrossGroups`).
+  - `verificar-recintos-y-areas`: auditoría espacial de `Rooms` y `Areas` (sin ubicar, no cerrados, duplicados, contraste de superficies) y limpieza de elementos sin ubicar.
+  - `renombrar-vistas-y-laminas`: auditoría contra nomenclatura y renombrado en lote con regex, prefijos/sufijos, transformaciones y plantillas con tokens.
+  - `consolidar-y-purgar-tipos`: auditoría de tipos sin uso o duplicados, migración de ejemplares entre tipos y purga controlada por categoría/regex.
+  - `auditar-plantillas-de-vista`: auditoría de uso y comparación entre plantillas de vista, asignación en lote y limpieza de huérfanas.
+  - `laminas-desde-tabla`: exportación y sincronización bidireccional de láminas y parámetros de cajetín en JSON o CSV.
+  - `acotar-ejes`: acotado automático de ejes paralelos en plantas (cadenas parciales y cota total sin duplicar).
+
 ## [0.1.1] - 2026-11-13
 
 ### Agregado
