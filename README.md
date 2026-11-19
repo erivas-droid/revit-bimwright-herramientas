@@ -5,12 +5,12 @@ Herramientas para que Claude trabaje en Revit con
 
 bimwright trae unas 240 herramientas (consultas, vistas, láminas, etiquetas, parámetros y
 también `send_code`, que ejecuta C# dentro de Revit). Este repositorio suma lo que le falta
-para el trabajo diario de una oficina de arquitectura: 10 herramientas propias en C# y una
+para el trabajo diario de una oficina de arquitectura: 18 herramientas propias en C# y una
 skill de Claude Code con las reglas de uso.
 
 bimwright no se incluye: se instala desde su repositorio oficial (licencia Apache-2.0).
 
-> **Estado:** v0.1.1, versión para probar. Úsalo en modelos de ejemplo antes de
+> **Estado:** v0.2.0, versión para probar. Úsalo en modelos de ejemplo antes de
 > tocar un proyecto real (ver [Reglas de seguridad](#reglas-de-seguridad)).
 
 ## Requisitos
@@ -134,6 +134,14 @@ modifican el modelo aceptan `dry_run`, que por defecto es `true`: simulan, infor
 | [modificar-parametros-masivo](bimwright-mcp/herramientas/modificar-parametros-masivo/README.md) | Fijar, reemplazar, prefijo, sufijo, transformar o vaciar un parámetro en muchos elementos |
 | [renumerar](bimwright-mcp/herramientas/renumerar/README.md) | Marca o número de recinto en secuencia por posición, parámetro o lista |
 | [limpiar-cad](bimwright-mcp/herramientas/limpiar-cad/README.md) | Listar, reubicar y limpiar importaciones y vínculos CAD |
+| [cubicar-por-areas](bimwright-mcp/herramientas/cubicar-por-areas/README.md) | Cubicar elementos modelados cruzándolos geométricamente contra Area Plans o Rooms (con exportación CSV) |
+| [sincronizar-recintos-desde-areas](bimwright-mcp/herramientas/sincronizar-recintos-desde-areas/README.md) | Auditar y traspasar parámetros desde Areas a los Rooms contenidos en ellas (incluye soporte `VariesAcrossGroups`) |
+| [verificar-recintos-y-areas](bimwright-mcp/herramientas/verificar-recintos-y-areas/README.md) | Control de calidad espacial de Rooms y Areas (sin ubicar, no cerrados, duplicados y contraste de superficies) |
+| [renombrar-vistas-y-laminas](bimwright-mcp/herramientas/renombrar-vistas-y-laminas/README.md) | Auditar y renombrar vistas o láminas en lote por patrón, regex o plantilla con tokens |
+| [consolidar-y-purgar-tipos](bimwright-mcp/herramientas/consolidar-y-purgar-tipos/README.md) | Auditar tipos sin uso o duplicados, migrar ejemplares a un tipo destino y purgar selectivamente |
+| [auditar-plantillas-de-vista](bimwright-mcp/herramientas/auditar-plantillas-de-vista/README.md) | Auditar uso de plantillas de vista, comparar plantillas, asignar en lote y limpiar huérfanas |
+| [laminas-desde-tabla](bimwright-mcp/herramientas/laminas-desde-tabla/README.md) | Exportar e importar/sincronizar listados de láminas y parámetros de cajetín (JSON o CSV) |
+| [acotar-ejes](bimwright-mcp/herramientas/acotar-ejes/README.md) | Acotar automáticamente ejes paralelos en plantas (cadenas parciales y cota total) |
 
 Las pruebas de cada una están en [bimwright-mcp/pruebas](bimwright-mcp/pruebas). La lista
 completa de herramientas de bimwright, con su toolset, está en

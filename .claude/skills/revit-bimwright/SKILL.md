@@ -91,6 +91,14 @@ con `modules: ["arch_renumerar"]` y los parámetros en `data`.
 | `modificar-parametros-masivo` | Un parámetro en muchos elementos o en sus tipos: fijar, reemplazar (regex), prefijo, sufijo, transformar (mayúsculas, sin tildes, nombre tipo código) o vaciar. Rechaza marcas repetidas |
 | `renumerar` | Mark o número de recinto en secuencia por posición (filas, columnas, a lo largo de una línea), por parámetro o por lista; formato `P-{n:000}`, `{nivel}`; revisa choques con números existentes antes de escribir |
 | `limpiar-cad` | Listar importaciones y vínculos CAD (detecta rotos por archivo, no solo por estado), reubicar vínculos rotos buscando el archivo bajo carpetas (OneDrive/SharePoint) y borrar importaciones, vínculos rotos y patrones `IMPORT-*` |
+| `cubicar-por-areas` | Solo lectura: cruza elementos modelados contra polígonos de `Area Plans` o `Rooms`, agrupa por parámetros configurables (torre/edificio, unidad) y exporta CSV opcional |
+| `sincronizar-recintos-desde-areas` | Audita y traspasa parámetros desde `Areas` a los `Rooms` contenidos en ellas; soporta `incluir_en_grupo` solo para parámetros con `VariesAcrossGroups` |
+| `verificar-recintos-y-areas` | Control de calidad espacial de `Rooms` y `Areas` (sin ubicar, no cerrados, duplicados, contraste de superficies) y limpieza de elementos sin ubicar |
+| `renombrar-vistas-y-laminas` | Audita contra regex y renombra vistas o láminas en lote (reemplazar, prefijo, sufijo, transformar o plantilla con tokens `{nivel}`, `{tipo}`, `{escala}`) |
+| `consolidar-y-purgar-tipos` | Audita tipos sin uso o duplicados, migra ejemplares entre tipos (omitiendo grupos) y purga tipos sin uso por categoría/regex |
+| `auditar-plantillas-de-vista` | Audita uso de plantillas de vista, compara dos plantillas, asigna en lote y borra plantillas huérfanas |
+| `laminas-desde-tabla` | Exporta y sincroniza láminas y parámetros de cajetín desde JSON o CSV (crea faltantes y actualiza existentes) |
+| `acotar-ejes` | Lista familias de ejes paralelos y acota automáticamente en plantas (cadenas parciales + cota total, evitando duplicadas) |
 
 **Modelos reales:** las herramientas se pueden usar en solo lectura (`listar`, `leer`,
 `auditar` con `documento`). Escribir en un modelo real solo a pedido explícito del usuario,
