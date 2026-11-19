@@ -5,6 +5,8 @@ según [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+## [0.2.0] - 2026-11-19
+
 ### Agregado
 
 - 8 nuevas herramientas propias para `send_code` de bimwright:
@@ -58,6 +60,7 @@ de ejemplo Snowdon Towers.
 - Probar el toolset `workflows` de bimwright, ya incluido en la configuración recomendada.
 - Probar las herramientas en Revit 2025.
 
-[Sin publicar]: https://github.com/erivas-droid/revit-bimwright-herramientas/compare/v0.1.1...HEAD
+[Sin publicar]: https://github.com/erivas-droid/revit-bimwright-herramientas/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/erivas-droid/revit-bimwright-herramientas/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/erivas-droid/revit-bimwright-herramientas/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/erivas-droid/revit-bimwright-herramientas/releases/tag/v0.1.0
