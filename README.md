@@ -10,7 +10,7 @@ skill de Claude Code con las reglas de uso.
 
 bimwright no se incluye: se instala desde su repositorio oficial (licencia Apache-2.0).
 
-> **Estado:** v0.2.0, versión para probar. Úsalo en modelos de ejemplo antes de
+> **Estado:** v0.2.1, versión para probar. Úsalo en modelos de ejemplo antes de
 > tocar un proyecto real (ver [Reglas de seguridad](#reglas-de-seguridad)).
 
 ## Requisitos
