@@ -263,6 +263,9 @@ public class McpDynamicScript
 
             foreach (var t in huerfanas)
             {
+                // Datos leidos antes de borrar: un elemento borrado no se puede leer.
+                int tid = t.Id.IntegerValue;
+                string nom = t.Name, tipoVista = t.ViewType.ToString();
                 using (var st = new SubTransaction(doc))
                 {
                     st.Start();
@@ -270,12 +273,12 @@ public class McpDynamicScript
                     {
                         doc.Delete(t.Id);
                         st.Commit();
-                        borradas.Add(new { id = t.Id.IntegerValue, nombre = t.Name, tipo = t.ViewType.ToString() });
+                        borradas.Add(new { id = tid, nombre = nom, tipo = tipoVista });
                     }
                     catch (Exception ex)
                     {
                         if (st.HasStarted() && !st.HasEnded()) st.RollBack();
-                        errores.Add(new { id = t.Id.IntegerValue, nombre = t.Name, error = ex.Message });
+                        errores.Add(new { id = tid, nombre = nom, error = ex.Message });
                     }
                 }
             }
