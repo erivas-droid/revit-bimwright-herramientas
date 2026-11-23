@@ -275,7 +275,11 @@ public class McpDynamicScript
 
         var borrados = new List<object>();
         var omitidos = new List<object>();
-        var aBorrarIds = new HashSet<ElementId>();
+        // Tipos que quedan por (categoria, familia), contados ANTES de borrar: un elemento borrado
+        // no se puede leer (InvalidObjectException), asi que no se vuelve a consultar.
+        var restantes = todosTipos
+            .GroupBy(x => Tuple.Create(x.Category.Id.IntegerValue, (x.FamilyName ?? "").ToLowerInvariant()))
+            .ToDictionary(g => g.Key, g => g.Count());
         var fallas = new RvtMcp.Plugin.SafeFailuresPreprocessor();
         TransactionStatus estado;
 
@@ -288,9 +292,14 @@ public class McpDynamicScript
 
             foreach (var t in candidatos)
             {
-                if (EsUnicoDeFamilia(todosTipos, t, aBorrarIds))
+                // Datos del tipo leidos antes de borrarlo.
+                int tid = t.Id.IntegerValue;
+                string cat = t.Category.Name, fam = t.FamilyName, nom = t.Name;
+                var clave = Tuple.Create(t.Category.Id.IntegerValue, (fam ?? "").ToLowerInvariant());
+                int quedan;
+                if (!restantes.TryGetValue(clave, out quedan) || quedan <= 1)
                 {
-                    omitidos.Add(new { id = t.Id.IntegerValue, tipo = t.FamilyName + ": " + t.Name, motivo = "ultimo tipo de la familia" });
+                    omitidos.Add(new { id = tid, tipo = fam + ": " + nom, motivo = "ultimo tipo de la familia" });
                     continue;
                 }
                 using (var st = new SubTransaction(doc))
@@ -300,13 +309,13 @@ public class McpDynamicScript
                     {
                         doc.Delete(t.Id);
                         st.Commit();
-                        aBorrarIds.Add(t.Id);
-                        borrados.Add(new { id = t.Id.IntegerValue, categoria = t.Category.Name, familia = t.FamilyName, tipo = t.Name });
+                        restantes[clave] = quedan - 1;
+                        borrados.Add(new { id = tid, categoria = cat, familia = fam, tipo = nom });
                     }
                     catch (Exception ex)
                     {
                         if (st.HasStarted() && !st.HasEnded()) st.RollBack();
-                        omitidos.Add(new { id = t.Id.IntegerValue, tipo = t.FamilyName + ": " + t.Name, motivo = ex.Message });
+                        omitidos.Add(new { id = tid, tipo = fam + ": " + nom, motivo = ex.Message });
                     }
                 }
             }

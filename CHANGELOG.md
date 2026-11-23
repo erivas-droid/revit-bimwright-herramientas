@@ -5,6 +5,14 @@ según [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### Corregido
+
+- `auditar-plantillas-de-vista` (`limpiar_huerfanas`) y `consolidar-y-purgar-tipos` (`purgar_sin_uso`)
+  fallaban con `InvalidObjectException` porque leían el nombre, el tipo o la familia de un elemento
+  ya borrado. Ahora esos datos se leen antes de `doc.Delete`, y `purgar_sin_uso` cuenta los tipos
+  por categoría y familia antes de borrar. Probado con `dry_run` en Revit 2024.3 con bimwright
+  v2.5.1; el borrado real (`dry_run: false`) no se ha probado.
+
 ## [0.2.0] - 2026-11-19
 
 ### Agregado
